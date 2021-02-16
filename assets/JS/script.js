@@ -50,6 +50,15 @@ start.addEventListener('click', function() {
             }
         }, 1000);
     }
+    render(questions);
     
 });
+
+// Clear HTML data from container and set new elements to = questions
+
+function render(questions) {
+    container.innerHTML = "";
+    answerChoice.innerHTML = "";
+
+}
 
