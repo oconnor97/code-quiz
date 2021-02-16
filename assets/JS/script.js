@@ -1,10 +1,10 @@
 var timeLeft = document.getElementById('timer');
 var start = document.getElementById('start-button');
-var answerChoice = document.getElementById('questions-list');
+var answers = document.getElementById('questions-list');
 var container = document.getElementById('container');
+var questionTitle = document.querySelector('p');
 
-
-var secondsLeft = 10;
+var secondsLeft = 100;
 var timeStart = 0;
 var score = 0;
 
@@ -59,6 +59,10 @@ start.addEventListener('click', function() {
 function render(questions) {
     container.innerHTML = "";
     answerChoice.innerHTML = "";
-
+    for (var i = 0; i >= questions.length; i++) {
+        var questionList = questions.title;
+        var answerChoice = questions.choices;
+        questionTitle.textContent = questionList;
+    }
 }
 
