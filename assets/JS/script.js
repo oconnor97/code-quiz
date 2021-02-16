@@ -4,7 +4,7 @@ var answerChoice = document.getElementById('questions-list');
 var container = document.getElementById('container');
 
 
-var secondsLeft = 75;
+var secondsLeft = 10;
 var timeStart = 0;
 var score = 0;
 
@@ -46,7 +46,6 @@ start.addEventListener('click', function() {
             
             if (secondsLeft <= 0) {
                 clearInterval(timeStart);
-                gameFinished();
                 timeLeft.textContent = "Time's up!";
             }
         }, 1000);
