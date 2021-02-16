@@ -3,10 +3,11 @@ var start = document.getElementById('start-button');
 var answers = document.getElementById('questions-list');
 var container = document.getElementById('container');
 var questionTitle = document.querySelector('p');
-
+var mainDiv = document.getElementById('mainDiv');
 var secondsLeft = 100;
 var timeStart = 0;
 var score = 0;
+var questionIndex = 0;
 
 
 var questions = [
@@ -50,19 +51,33 @@ start.addEventListener('click', function() {
             }
         }, 1000);
     }
-    render(questions);
+    render(questionIndex);
     
 });
+var newList = document.createElement('ul');
 
 // Clear HTML data from container and set new elements to = questions
 
-function render(questions) {
-    container.innerHTML = "";
-    answerChoice.innerHTML = "";
-    for (var i = 0; i >= questions.length; i++) {
-        var questionList = questions.title;
-        var answerChoice = questions.choices;
+function render(questionIndex) {
+    mainDiv.innerHTML = "";
+    newList.innerHTML = "";
+    console.log('hello');
+    for (var i = 0; i > questions.length; i++) {
+        var questionList = questions[questionIndex].title;
+        var answerChoice = questions[questionIndex].choices;
         questionTitle.textContent = questionList;
     }
+
+    // answerChoice.forEach(function (newList) {
+    //     var listItem = document.createElement("li");
+    //     listItem.textContent = newItem;
+    //     mainDiv.appendChild(newList);
+    //     newList.appendChild(listItem);
+
+
+    // })
+
+
+
 }
 
