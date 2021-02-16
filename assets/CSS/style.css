@@ -1,14 +1,26 @@
+body {
+    background-color: rgb(58, 58, 238);
+}
+header {
+    border-bottom: 2px solid black;
+    
+}
+
 #timer {
     position: absolute;
     float: right;
     margin-left: 75%;
     width: 33%;
     font-size: 20px;
+    color: white;
+    margin-bottom: 5px;
     
 }
 #high-scores {
     width: 33%;
     font-size: 20px;
+    color: white;
+    margin-bottom: 5px;
 }
 
 #container {
@@ -21,7 +33,8 @@
 }
 
 #container {
-    border: 2px solid blue;
+    border: 4px solid black;
+    background-color: white;
 }
 #container h1  {
  text-align: center;
