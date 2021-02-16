@@ -1,15 +1,15 @@
-const timeLeft = document.getElementById('timer');
-const start = document.getElementById('start-button');
-const answerChoice = document.getElementById('questions-list');
-const container = document.getElementById('container');
+var timeLeft = document.getElementById('timer');
+var start = document.getElementById('start-button');
+var answerChoice = document.getElementById('questions-list');
+var container = document.getElementById('container');
 
 
-let secondsLeft = 75;
-const timeStart = 0;
-const score = 0;
+var secondsLeft = 75;
+var timeStart = 0;
+var score = 0;
 
 
-const questions = [
+var questions = [
     {
         title: 'Commonly used data types DO NOT include:',
         choices: ['strings', 'booleans', 'alerts', 'numbers'],
