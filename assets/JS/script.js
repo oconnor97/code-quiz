@@ -3,6 +3,7 @@ var start = document.getElementById('start-button');
 var answers = document.getElementById('questions-list');
 var container = document.getElementById('container');
 var questionTitle = document.querySelector('p');
+var codeH1 = document.querySelector('h1');
 var mainDiv = document.getElementById('mainDiv');
 var secondsLeft = 100;
 var timeStart = 0;
@@ -59,23 +60,16 @@ var newList = document.createElement('ul');
 // Clear HTML data from container and set new elements to = questions
 
 function render(questionIndex) {
-    mainDiv.innerHTML = "";
-    newList.innerHTML = "";
-    console.log('hello');
+    codeH1.textContent = "";
+    questionTitle.textContent = "";
+    start.style.display = "none";
     for (var i = 0; i > questions.length; i++) {
         var questionList = questions[questionIndex].title;
         var answerChoice = questions[questionIndex].choices;
-        questionTitle.textContent = questionList;
+        questionTitle.innerHTML = questionList;
     }
 
-    // answerChoice.forEach(function (newList) {
-    //     var listItem = document.createElement("li");
-    //     listItem.textContent = newItem;
-    //     mainDiv.appendChild(newList);
-    //     newList.appendChild(listItem);
-
-
-    // })
+   
 
 
 
