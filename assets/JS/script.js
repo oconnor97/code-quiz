@@ -5,7 +5,8 @@ var container = document.getElementById('container');
 var questionTitle = document.querySelector('p');
 var codeH1 = document.querySelector('h1');
 var mainDiv = document.getElementById('mainDiv');
-var secondsLeft = 100;
+var secondsLeft = 60;
+var penalty = 10;
 var timeStart = 0;
 var score = 0;
 var questionIndex = 0;
@@ -40,6 +41,7 @@ var questions = [
 
 ];
 
+
 start.addEventListener('click', function() {
     if (timeStart === 0) {
         timeStart = setInterval(function() {
@@ -54,6 +56,7 @@ start.addEventListener('click', function() {
     }
     render(questionIndex);
     
+    
 });
 var newList = document.createElement('ul');
 
@@ -63,15 +66,34 @@ function render(questionIndex) {
     codeH1.textContent = "";
     questionTitle.textContent = "";
     start.style.display = "none";
-    for (var i = 0; i > questions.length; i++) {
+    // for (var i = 0; i > questions.length; i++) {
+        
+    // }
         var questionList = questions[questionIndex].title;
         var answerChoice = questions[questionIndex].choices;
-        questionTitle.innerHTML = questionList;
-    }
+        codeH1.innerHTML = questionList;
 
-   
-
-
-
+    answerChoice.forEach(function (newItem) {
+        var listItem = document.createElement('li');
+        listItem.textContent = newItem;
+        questionTitle.appendChild(newList);
+        newList.appendChild(listItem);
+        listItem.addEventListener('click', (choiceCompare));
+        
+    })
+    
 }
+var createP = document.createElement('p');
+function choiceCompare(event) {
 
+    var pickAnswer = event.target;
+    if(pickAnswer.textContent === questions[questionIndex].answer) {
+        createP.textContent = "Correct! The answer is:  " + questions[questionIndex].answer;
+        newList.appendChild(createP);
+    } else {
+        createP.textContent = "Incorrect! The answer is:  " + questions[questionIndex].answer;
+        newList.appendChild(createP);
+        secondsLeft = secondsLeft - penalty;
+    }
+    
+}
