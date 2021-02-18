@@ -1,11 +1,11 @@
 var timeLeft = document.getElementById('timer');
 var start = document.getElementById('start-button');
-var answers = document.getElementById('questions-list');
+var answers = document.getElementById('answers-list');
 var container = document.getElementById('container');
 var questionTitle = document.querySelector('p');
 var codeH1 = document.querySelector('h1');
 var mainDiv = document.getElementById('mainDiv');
-var secondsLeft = 60;
+var secondsLeft = 61;
 var penalty = 10;
 var timeStart = 0;
 var score = 0;
@@ -41,6 +41,7 @@ var questions = [
 
 ];
 
+console.log(render);
 
 start.addEventListener('click', function() {
     if (timeStart === 0) {
@@ -54,7 +55,7 @@ start.addEventListener('click', function() {
             }
         }, 1000);
     }
-    render(questionIndex);
+    render();
     
     
 });
@@ -62,13 +63,14 @@ var newList = document.createElement('ul');
 
 // Clear HTML data from container and set new elements to = questions
 
-function render(questionIndex) {
+function render() {
+    console.log(questionIndex);
     codeH1.textContent = "";
     questionTitle.textContent = "";
     start.style.display = "none";
-    // for (var i = 0; i > questions.length; i++) {
-        
-    // }
+    answers.innerHTML = "";
+    
+
         var questionList = questions[questionIndex].title;
         var answerChoice = questions[questionIndex].choices;
         codeH1.innerHTML = questionList;
@@ -76,8 +78,8 @@ function render(questionIndex) {
     answerChoice.forEach(function (newItem) {
         var listItem = document.createElement('li');
         listItem.textContent = newItem;
-        questionTitle.appendChild(newList);
-        newList.appendChild(listItem);
+        questionTitle.appendChild(answers);
+        answers.appendChild(listItem);
         listItem.addEventListener('click', (choiceCompare));
         
     })
@@ -88,12 +90,29 @@ function choiceCompare(event) {
 
     var pickAnswer = event.target;
     if(pickAnswer.textContent === questions[questionIndex].answer) {
-        createP.textContent = "Correct! The answer is:  " + questions[questionIndex].answer;
-        newList.appendChild(createP);
+        alert("Correct! The answer is:  " + questions[questionIndex].answer);
+        answers.appendChild(createP);
+        
     } else {
-        createP.textContent = "Incorrect! The answer is:  " + questions[questionIndex].answer;
-        newList.appendChild(createP);
+        alert("Incorrect! The answer is:  " + questions[questionIndex].answer);
+        answers.appendChild(createP);
         secondsLeft = secondsLeft - penalty;
     }
+    if(secondsLeft === 0 || questionIndex === questions.length - 1) {
+        stopGame();
+    } else {questionIndex++;
+        render(questionIndex);
+    }
+
+
     
+}
+
+
+function stopGame() {
+    secondsLeft = score;
+        codeH1.textContent = "";
+        questionTitle.textContent = "";
+        start.style.display = "none";
+        answers.innerHTML = "";
 }
