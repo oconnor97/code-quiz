@@ -115,9 +115,29 @@ function choiceCompare(event) {
 
 
 function stopGame() {
-    secondsLeft = score;
-        codeH1.textContent = "";
-        questionTitle.textContent = "";
-        start.style.display = "none";
-        answers.innerHTML = "";
+    var finalScore = secondsLeft;
+    codeH1.textContent = "";
+    questionTitle.textContent = "";
+    start.style.display = "none";
+    answers.innerHTML = "";
+    codeH1.textContent = "Your final score is " + finalScore;
+    clearInterval(timeStart);
+    var newLabel = document.createElement('label');
+    newLabel.textContent = "Please enter your intials";
+    newLabel.setAttribute('id', 'newLabel');
+    mainDiv.appendChild(newLabel);
+
+    var initalInput = document.createElement('input');
+    initalInput.setAttribute('type', 'text');
+    initalInput.setAttribute('id', 'initalInput');
+    initalInput.textContent = "";
+    mainDiv.appendChild(initalInput);
+
+
+    var submitBtn = document.createElement("button");
+    submitBtn.setAttribute("type", "submit");
+    submitBtn.setAttribute("id", "Submit");
+    submitBtn.textContent = "Submit";
+
+    mainDiv.appendChild(submitBtn);
 }
