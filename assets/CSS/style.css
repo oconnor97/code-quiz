@@ -68,3 +68,16 @@ li {
 li:hover {
     opacity: .5;
 }
+
+
+#newLabel {
+    font-size: 2em;
+    align-content: center;
+    margin-left: 2em;
+}
+
+#initalInput {
+    height: 25px;
+    width: 85px;
+    margin-left: 3em;
+}
