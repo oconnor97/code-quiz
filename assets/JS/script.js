@@ -52,6 +52,7 @@ start.addEventListener('click', function() {
             if (secondsLeft <= 0) {
                 clearInterval(timeStart);
                 timeLeft.textContent = "Time's up!";
+                stopGame();
             }
         }, 1000);
     }
@@ -90,19 +91,23 @@ function choiceCompare(event) {
 
     var pickAnswer = event.target;
     if(pickAnswer.textContent === questions[questionIndex].answer) {
-        alert("Correct! The answer is:  " + questions[questionIndex].answer);
+        // alert("Correct! The answer is:  " + questions[questionIndex].answer);
         answers.appendChild(createP);
-        
+        createP.textContent = "Correct! The answer is:  " + questions[questionIndex].answer
     } else {
-        alert("Incorrect! The answer is:  " + questions[questionIndex].answer);
+        // alert("Incorrect! The answer is:  " + questions[questionIndex].answer);
         answers.appendChild(createP);
+        createP.textContent = "Incorrect! The answer is:  " + questions[questionIndex].answer
         secondsLeft = secondsLeft - penalty;
     }
-    if(secondsLeft === 0 || questionIndex === questions.length - 1) {
-        stopGame();
-    } else {questionIndex++;
-        render(questionIndex);
-    }
+    setTimeout(function() {
+        
+        if(secondsLeft === 0 || questionIndex === questions.length - 1) {
+            stopGame();
+        } else {questionIndex++;
+            render(questionIndex);
+        }
+    }, 1500)
 
 
     
