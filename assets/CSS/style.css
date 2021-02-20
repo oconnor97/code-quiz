@@ -1,3 +1,4 @@
+/* sets the color for the body */
 body {
     background-color: rgb(58, 58, 238);
 }
@@ -5,7 +6,7 @@ header {
     border-bottom: 2px solid black;
     
 }
-
+/* changing the positioning of all items located on in the HTML */
 #timer {
     position: absolute;
     float: right;
@@ -43,6 +44,7 @@ header {
 #container p {
     margin: 10px;
 }
+/* button styles */
 button {
     margin-left: 33%;
     margin-top: 5%;
@@ -56,7 +58,7 @@ button {
 a {
     color:white;
 }
-
+/* for the list items that are created in the script file */
 li {
     background-color: blue;
     margin-top: 10px;
