@@ -1,3 +1,5 @@
+//global variables
+
 var timeLeft = document.getElementById('timer');
 var start = document.getElementById('start-button');
 var answers = document.getElementById('answers-list');
@@ -42,6 +44,8 @@ var questions = [
 ];
 showScores.style.display = 'none';
 
+//sets the timer and begins when the begin button is clicked
+
 start.addEventListener('click', function() {
     if (timeStart === 0) {
         timeStart = setInterval(function() {
@@ -61,7 +65,7 @@ start.addEventListener('click', function() {
 });
 var newList = document.createElement('ul');
 
-// Clear HTML data from container and set new elements to = questions
+// Clear HTML data from container and set new elements to = questions/choices
 
 function render() {
 
@@ -111,6 +115,8 @@ function choiceCompare(event) {
 
     
 }
+
+//ends the game when time runs out or the test is finished 
 
 var scoreList = document.createElement('ul');
 function stopGame() {
@@ -170,6 +176,7 @@ submitBtn.addEventListener('click', function() {
 });
 }
 
+//renders the score in a list with the initials and score
 
 function renderHighScores() {
     
@@ -195,8 +202,22 @@ function renderHighScores() {
     reset.addEventListener('click', function() {
         localStorage.clear;
     });
+    var clear = document.getElementById('clear');
+    clear.addEventListener('click', function() {
+
+    while (showScores.firstChild) {
+        showScores.removeChild(showScores.firstChild);
+        
+    };
+    localStorage.clear();
+
+    });
+
 
 };
+
+    
+//Allows the user to view their scores saved in local storage
 
 var highScores=document.getElementById('high-scores');
 highScores.addEventListener('click', function() {
