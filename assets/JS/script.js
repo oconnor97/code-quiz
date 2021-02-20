@@ -10,8 +10,8 @@ var penalty = 10;
 var timeStart = 0;
 var score = 0;
 var questionIndex = 0;
-
-
+var highScorePage = document.getElementById('high-scores');
+var showScores = document.getElementById('show-scores');
 var questions = [
     {
         title: 'Commonly used data types DO NOT include:',
@@ -40,8 +40,7 @@ var questions = [
     },
 
 ];
-
-console.log(render);
+showScores.style.display = 'none';
 
 start.addEventListener('click', function() {
     if (timeStart === 0) {
@@ -65,7 +64,7 @@ var newList = document.createElement('ul');
 // Clear HTML data from container and set new elements to = questions
 
 function render() {
-    console.log(questionIndex);
+
     codeH1.textContent = "";
     questionTitle.textContent = "";
     start.style.display = "none";
@@ -107,37 +106,100 @@ function choiceCompare(event) {
         } else {questionIndex++;
             render(questionIndex);
         }
-    }, 1500)
+    }, 900)
 
 
     
 }
 
-
+var scoreList = document.createElement('ul');
 function stopGame() {
     var finalScore = secondsLeft;
     codeH1.textContent = "";
     questionTitle.textContent = "";
     start.style.display = "none";
     answers.innerHTML = "";
+
+    
     codeH1.textContent = "Your final score is " + finalScore;
     clearInterval(timeStart);
     var newLabel = document.createElement('label');
     newLabel.textContent = "Please enter your intials";
     newLabel.setAttribute('id', 'newLabel');
     mainDiv.appendChild(newLabel);
-
+    
     var initalInput = document.createElement('input');
     initalInput.setAttribute('type', 'text');
     initalInput.setAttribute('id', 'initalInput');
     initalInput.textContent = "";
     mainDiv.appendChild(initalInput);
-
+    
 
     var submitBtn = document.createElement("button");
     submitBtn.setAttribute("type", "submit");
     submitBtn.setAttribute("id", "Submit");
     submitBtn.textContent = "Submit";
-
     mainDiv.appendChild(submitBtn);
+    
+submitBtn.addEventListener('click', function() {
+    var initials = initalInput.value;
+
+    if (initials === '') {
+        alert("Please enter your initials");
+        
+    } else {var userScore = {
+        initials: initials,
+        score: finalScore
+    }
+    }
+    var highScores = localStorage.getItem('highScores');
+    if (highScores === null) {
+        highScores = [];
+    } else {
+        highScores = JSON.parse(highScores);
+    }
+    highScores.push(userScore);
+    var newScore = JSON.stringify(highScores);
+    localStorage.setItem("highScores", newScore);
+    
+    
+    
+    
+    renderHighScores();
+    
+});
+
 }
+
+function renderHighScores() {
+    
+    var scoreEl = localStorage.getItem("highScores");
+    newScore = JSON.parse(scoreEl);
+    var showScores = document.getElementById('show-scores')
+    showScores.style.display = 'block';
+    newScore.forEach(newScore => {
+        var listScores = document.createElement('li');
+        listScores.textContent = `Intials: ${newScore.initials}, Score: ${newScore.score}`;
+        showScores.appendChild(listScores);
+        
+    });
+    codeH1.textContent = "";
+    document.querySelector('#Submit').style.display = 'none';
+    initalInput.style.display = 'none';
+    newLabel.style.display = 'none';
+
+    
+
+}
+
+var highScores=document.getElementById('high-scores');
+highScores.addEventListener('click', function() {
+    codeH1.textContent = "";
+    questionTitle.textContent = "";
+    start.style.display = "none";
+    answers.innerHTML = "";
+    renderHighScores();
+
+});
+
+
