@@ -168,8 +168,8 @@ submitBtn.addEventListener('click', function() {
     renderHighScores();
     
 });
-
 }
+
 
 function renderHighScores() {
     
@@ -183,14 +183,20 @@ function renderHighScores() {
         showScores.appendChild(listScores);
         
     });
-    codeH1.textContent = "";
+    codeH1.textContent = "High Scores";
     document.querySelector('#Submit').style.display = 'none';
     initalInput.style.display = 'none';
     newLabel.style.display = 'none';
-
     
+    var showBtn = document.getElementById('hide-btn');
+    showBtn.style.display = 'block';
+   
+    var reset = document.getElementById('clear');
+    reset.addEventListener('click', function() {
+        localStorage.clear;
+    });
 
-}
+};
 
 var highScores=document.getElementById('high-scores');
 highScores.addEventListener('click', function() {
@@ -198,8 +204,12 @@ highScores.addEventListener('click', function() {
     questionTitle.textContent = "";
     start.style.display = "none";
     answers.innerHTML = "";
+    var showBtn = document.getElementById('hide-btn');
+    showBtn.style.display = 'block';
+    clearInterval(timeStart);
     renderHighScores();
 
+    
 });
 
 
