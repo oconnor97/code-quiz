@@ -81,3 +81,10 @@ li:hover {
     width: 85px;
     margin-left: 3em;
 }
+#hide-btn {
+    display: none;
+
+}
+#btn {
+    margin: 1em;
+}
